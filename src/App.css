@@ -19,3 +19,52 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 body{
     color: #151515;
 }
+
+/* =========================Search form==================== */
+
+.custom-select__control{
+    border: none !important;
+    background-color: inherit !important;
+    min-width: 160px;
+}
+.custom-select__control--is-focused{
+    border-radius: 12px !important;
+    box-shadow: 0 0 0 1px #151515!important;
+    
+}
+
+.custom-select__indicator-separator{
+    display: none !important;
+}
+
+.custom-select__dropdown-indicator {
+    /* display: none !important; */
+    background: url(./img/down.svg) 50% 50% /10px 10px no-repeat !important;
+    width: 16px !important;
+    height: 16px !important; 
+    padding-right: 24px!important;
+}
+
+.custom-select__dropdown-indicator > svg {
+    display: none !important;
+}
+
+.custom-select__single-value{
+    font-family: 'Poppins', sans-serif!important;
+    background: inherit!important;
+    font-size: 15px!important;
+    font-weight: 700!important;
+    color: #151515!important;
+    /* height: 15px!important; */
+    padding-left: 8px !important;
+    padding-bottom: 5px!important;
+    padding-top: 5px!important;
+    
+    
+}
+
+.custom-select__value-container{
+    padding-right: 0px!important;
+}
+/* font-family: 'Open Sans', sans-serif;
+font-family: 'Poppins', sans-serif; */

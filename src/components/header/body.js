@@ -1,18 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
+import Select from 'react-select'
 import styled from "styled-components";
 import userImg from "../../img/person.svg"
 import cartImg from "../../img/bag.svg"
 import downImg from "../../img/down.svg"
 import searchImg from "../../img/search.svg"
 
+const options = [
+  { value: 'all', label: 'All categories' },
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
+
 export default function HeadBody() {
+  const [currentCategory, setCurrentCategory] = useState('all')
+
+  const getValue = () => options.find(ctg => ctg.value === currentCategory)
+
+  const onChange = (newValue) => setCurrentCategory(newValue.value)
+
+  let valueDef = { value: 'all', label: 'All categories' }
     return(
         <DivBody className='header-body'>
           <div className='logo'>
             <H1>Freshfood</H1>
           </div>
           <DivSearch className='search'>
-            <BtnCategory type='button'>All categories</BtnCategory>
+            <Select classNamePrefix='custom-select' options={options} defaultValue={valueDef} onChange={onChange}/>
+            {/* <BtnCategory type='button'>All categories</BtnCategory> */}
             <DivForInput><InputSearch type='text' placeholder='search'></InputSearch></DivForInput>
             <BtnSearch type='button'></BtnSearch>
           </DivSearch>
@@ -34,8 +50,9 @@ height: 130px;
 `;
 
 const H1 = styled.h1`
-font-size: 20px;
-font-weight: 800;
+font-family: 'Poppins', sans-serif;
+font-size: 28px;
+font-weight: 700;
 `;
 
 const DivSearch = styled.div`
@@ -60,6 +77,7 @@ gap: 40px;
 `;
  
 const BtnCategory = styled.button`
+font-family: 'Poppins', sans-serif;
 background: inherit;
 font-size: 15px;
 font-weight: 700;
@@ -82,7 +100,10 @@ margin: 0px 16px 0px 12px;
 const InputSearch = styled.input`
 background: inherit;
 height: 19px;
-color: #A9A9A9;
+&::placeholder{
+  color: #A9A9A9;
+}
+
 `;
 
 const DivForInput = styled.div`
