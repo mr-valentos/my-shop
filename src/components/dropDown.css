@@ -1,0 +1,48 @@
+.drop-down__control{
+    border: none !important;
+    background-color: inherit !important;
+    
+}
+.drop-down__control--is-focused{
+    border-radius: 12px !important;
+    box-shadow: 0 0 0 1px #151515!important;
+    
+}
+
+.drop-down__indicator-separator{
+    display: none !important;
+}
+/* .down__indicators{
+    width: 12px !important;
+} */
+
+.drop-down__dropdown-indicator {
+    /* display: none !important; */
+    background: url(../img/down.svg) 50% 50% /8px 8px no-repeat !important;
+    width: 12px !important;
+    height: 12px !important; 
+    margin-right: 24px!important;
+    margin-left: 2px !important;
+}
+
+.drop-down__dropdown-indicator > svg {
+    display: none !important;
+}
+
+.drop-down__single-value{
+    font-family: 'Poppins', sans-serif!important;
+    background: inherit!important;
+    font-size: 15px!important;
+    font-weight: 500!important;
+    color: #151515!important;
+    /* height: 15px!important; */
+    padding-left: 8px !important;
+    padding-bottom: 5px!important;
+    padding-top: 5px!important;
+    
+    
+}
+
+.drop-down__value-container{
+    padding-right: 0px!important;
+}

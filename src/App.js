@@ -1,23 +1,26 @@
 import './App.css';
+import styled from "styled-components";
 import Header from './components/header';
+import Main from './components/main'
+import Footer from './components/footer'
 
 
 function App() {
   
   return (
-    <div className="App">
+    <DivApp className="App">
       <Header/>
-      <main>
-        <h1>gg</h1>
-      </main>
-      <footer>
-        <h1>footer</h1>
-      </footer>
+      <Main/>
 
-    </div>
+    </DivApp>
 
   );
 }
 
 export default App;
 
+
+
+const DivApp = styled.div`
+    margin: 0px 0px;
+`;

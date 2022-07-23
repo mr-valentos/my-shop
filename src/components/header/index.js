@@ -16,7 +16,7 @@ export default function Header(){
 
 const HeaderStyled = styled.header`
     font-family: 'Open Sans', sans-serif;
-    padding: 0px 80px;
+    margin: 0px 80px;
 `;
 
 

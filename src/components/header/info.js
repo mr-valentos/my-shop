@@ -20,7 +20,7 @@ export default function Info() {
 
 
 
-const DivInfo = styled.div`
+const DivInfo = styled.nav`
 display: flex;
 height: 48px;
 justify-content: space-between;

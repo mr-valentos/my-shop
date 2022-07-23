@@ -33,8 +33,12 @@ export default function HeadBody() {
             <BtnSearch type='button'></BtnSearch>
           </DivSearch>
           <DivUserCart className='user_cart'>
-            <DivUser img={userImg} className='user'></DivUser>
-            <DivUser img={cartImg} className='cart'></DivUser>
+            <DivUser img={userImg} className='user'>
+              <SpanCounter>4</SpanCounter>
+            </DivUser>
+            <DivUser img={cartImg} className='cart'>
+              <SpanCounter>4</SpanCounter>
+            </DivUser>
           </DivUserCart>
         </DivBody>
     )
@@ -65,6 +69,7 @@ border-radius: 12px;
 `;
 
 const DivUser = styled.div`
+position: relative;
 background: url(${props=>props.img}) 0 0/100% 100% no-repeat;
 width:24px;
 height:24px;
@@ -112,4 +117,24 @@ const DivForInput = styled.div`
     padding-right: 24px;
     border-left: 1px solid #D1D1D1;
   }
+`;
+
+const SpanCounter = styled.span`
+position:absolute;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+
+color: #FFFFFF;
+text-align:center;
+width: 16px;
+height: 16px;
+top: 14px;
+left: -4px;
+
+background: #E6704B;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+border-radius: 12px;
 `;
