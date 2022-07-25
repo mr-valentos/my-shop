@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Info from "./info";
-import HeadBody from "./body";
+import Info from "./Info";
+import HeadBody from "./Body";
 
 export default function Header(){
     return (

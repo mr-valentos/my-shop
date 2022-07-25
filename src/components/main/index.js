@@ -1,20 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import CategoryLine from "./categoryLine";
-// import HeadBody from "./body";
+import CategoryLine from "./CategoryLine";
+import Filters from "./filters";
+
+
+
 
 export default function Main(){
     return (
        <MainBlock>
         <CategoryLine/>
         <ArticleBlock>
-            <section className="product-filter">dfsdf </section>
-            <section className="product-list">sdfsdfsdf </section>
+            <Filters/>
+            <section className="product-list">product-list </section>
 
         </ArticleBlock>
        </MainBlock>
     )
 }
+
 
 
 
@@ -26,5 +30,7 @@ flex-direction: column;
 `;
 
 const ArticleBlock = styled.article`
-margin: 0px 80px;
+display: flex;
+flex-direction: row;
+margin: 64px 80px;
 `;

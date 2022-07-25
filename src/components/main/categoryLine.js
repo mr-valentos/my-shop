@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import DropDown from "../dropDown"
+import DropDown from "../DropDown"
 
 const options = [
     { value: 'all', label: 'All categories' },

@@ -3,7 +3,7 @@ import Select from 'react-select'
 import styled from "styled-components";
 import userImg from "../../img/person.svg"
 import cartImg from "../../img/bag.svg"
-import downImg from "../../img/down.svg"
+// import downImg from "../../img/down.svg"
 import searchImg from "../../img/search.svg"
 
 const options = [
@@ -20,14 +20,14 @@ export default function HeadBody() {
 
   const onChange = (newValue) => setCurrentCategory(newValue.value)
 
-  let valueDef = { value: 'all', label: 'All categories' }
+  // let valueDef = { value: 'all', label: 'All categories' }
     return(
         <DivBody className='header-body'>
           <div className='logo'>
             <H1>Freshfood</H1>
           </div>
           <DivSearch className='search'>
-            <Select classNamePrefix='custom-select' options={options} defaultValue={valueDef} onChange={onChange}/>
+            <Select classNamePrefix='custom-select' options={options} defaultValue={getValue} onChange={onChange}/>
             {/* <BtnCategory type='button'>All categories</BtnCategory> */}
             <DivForInput><InputSearch type='text' placeholder='search'></InputSearch></DivForInput>
             <BtnSearch type='button'></BtnSearch>
@@ -81,18 +81,18 @@ justify-items: center;
 gap: 40px;
 `;
  
-const BtnCategory = styled.button`
-font-family: 'Poppins', sans-serif;
-background: inherit;
-font-size: 15px;
-font-weight: 700;
-padding-left: 16px;
-&:after {
-    content: url(${downImg});
-    padding-left: 8px;
-    padding-right: 24px;
-  }
-`;
+// const BtnCategory = styled.button`
+// font-family: 'Poppins', sans-serif;
+// background: inherit;
+// font-size: 15px;
+// font-weight: 700;
+// padding-left: 16px;
+// &:after {
+//     content: url(${downImg});
+//     padding-left: 8px;
+//     padding-right: 24px;
+//   }
+// `;
 
 const BtnSearch = styled.button`
 background: url(${searchImg}) 50% 50% /16px 16px no-repeat;
