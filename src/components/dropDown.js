@@ -1,13 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Select from 'react-select'
 
 
 export default function DropDown(props) {
-    const option = props.option
-    const defValue = props.defValue
-    useEffect(()=>{
-        console.log(props.defValue)
-    })
+    const {option} = props
+    const {defValue} = props
 
     return(
         <Select classNamePrefix='drop-down' options={option} isSearchable={false} defaultValue={defValue}/>

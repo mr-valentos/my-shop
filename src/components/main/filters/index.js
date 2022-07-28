@@ -26,5 +26,6 @@ const SectionFilter = styled.section`
 display: flex;
 flex-direction: column;  
 gap: 48px;
-min-width: 267px;     
+min-width: 267px;    
+margin-right: 34px
 `;

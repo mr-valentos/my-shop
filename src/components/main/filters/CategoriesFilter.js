@@ -14,18 +14,37 @@ export default function CategoriesFilter(){
     return (
         <FilterForm 
             name={'Categories'} 
-            component={Component}
+            component={Categories}
         />    
     )
 }
 
 
-function Component(props){
+function Categories(){
     return(
         <>
-        {options.map(e => <li><h1>{e.label}</h1></li>)}
+        {options.map(e => <LiForCategories key={e.value}><h1>{e.label}</h1><SpanCounter>6</SpanCounter></LiForCategories>)}
         </>
         
     )
 }
 
+
+
+
+const LiForCategories = styled.li`
+display: flex;
+justify-content: space-between;
+`;
+
+const SpanCounter = styled.span`
+background: #F4F8EC;
+border-radius: 12px;
+padding: 0px 8px;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+color: #6A983C;
+`;
