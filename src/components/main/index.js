@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CategoryLine from "./CategoryLine";
 import Filters from "./filters";
+import ProductList from "./ProductList";
 
 
 
@@ -12,7 +13,7 @@ export default function Main(){
         <CategoryLine/>
         <ArticleBlock>
             <Filters/>
-            <section className="product-list">product-list </section>
+            <ProductList/>
 
         </ArticleBlock>
        </MainBlock>
