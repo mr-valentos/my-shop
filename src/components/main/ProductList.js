@@ -1,33 +1,66 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import StarsImg from "../../img/starsProdactTemp.svg"
 
 
 export default function ProductList(){
+    const allProduct = useSelector(state => state.products.product)
+    console.log(allProduct)
     return (
         <ProductSection className="product-list">
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
+            {allProduct.map(product => (
+                <Product key={product.id}
+                name={product.name}
+                price={product.price}
+                description={product.description}
+                rating={product.rating}
+                />
+            ))}
+            
         </ProductSection>
     )
 }
 
 
 
-function Product(){
+function Product(props){
+    const {name} = props
+    const {price} = props
+    const {description} = props
+    const {rating} = props
+    let ratingInStars = ''
+
+    switch (rating) {
+        case 1:
+            ratingInStars = ''
+          break;
+        case 2:
+            ratingInStars = ''
+          break;
+        case 3:
+            ratingInStars = ''
+          break;
+        case 4:
+            ratingInStars = ''
+          break;
+        case 5:
+            ratingInStars = ''
+          break;
+        default:
+            ratingInStars = ''
+      }
     return(
         <ItemDiv className="product-list__item">
             <ImgDiv><DiscountBadge>-36 %</DiscountBadge></ImgDiv>
             <div>
-                <ProductTitle>Product title</ProductTitle>
-                <ProductDescription>Space for small description</ProductDescription>
+                <ProductTitle>{name}</ProductTitle>
+                <ProductDescription>{description}</ProductDescription>
                 <ProductRating img={StarsImg}></ProductRating>
             </div>
             <PriceAndBtn>
             <PriceBlock>
-                <h1>{36.99} USD</h1>
+                <h1>{price} USD</h1>
                 <h2>{48.56}</h2>     
             </PriceBlock>
                 <BtnBuy>Buy now</BtnBuy>
@@ -44,9 +77,16 @@ display: grid;
 width: 100%;
 grid-template-columns: repeat(auto-fill, 268px);
 grid-template-rows: minmax(200px, max-content);
-
 align-items: start;
 gap: 48px 32px;
+@media (max-width: 1024px) {
+    justify-content:center;
+}
+@media (max-width: 768px) {
+    /* grid-template-columns: repeat(2, 1fr); */
+    gap: 15px;
+}
+
 `;
 
 const ItemDiv = styled.div`
@@ -68,6 +108,10 @@ width: 236px;
 height: 180px;
 background: #F9F9F9;
 border-radius: 12px;
+@media (max-width: 768px) {
+    /* width: 100%;
+    height: 135px; */
+}
 `;
 
 const DiscountBadge = styled.span`

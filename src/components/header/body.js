@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Select from 'react-select'
 import styled from "styled-components";
 import userImg from "../../img/person.svg"
@@ -15,6 +16,7 @@ const options = [
 
 export default function HeadBody() {
   const [currentCategory, setCurrentCategory] = useState('all')
+  const allCategories = useSelector(state => state.categories.category)
 
   const getValue = () => options.find(ctg => ctg.value === currentCategory)
 
@@ -27,7 +29,7 @@ export default function HeadBody() {
             <H1>Freshfood</H1>
           </div>
           <DivSearch className='search'>
-            <Select classNamePrefix='custom-select' options={options} defaultValue={getValue} onChange={onChange}/>
+            <Select classNamePrefix='custom-select' options={allCategories} defaultValue={getValue} onChange={onChange}/>
             {/* <BtnCategory type='button'>All categories</BtnCategory> */}
             <DivForInput><InputSearch type='text' placeholder='search'></InputSearch></DivForInput>
             <BtnSearch type='button'></BtnSearch>
@@ -50,7 +52,12 @@ const DivBody = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-between;
-height: 130px;
+padding: 45px 0px 45px 0px;
+@media (max-width: 768px) {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 0px 15px 0px;
+}
 `;
 
 const H1 = styled.h1`

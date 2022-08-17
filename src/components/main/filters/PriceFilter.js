@@ -60,6 +60,12 @@ border: 1px solid #D1D1D1;
 border-radius: 12px;
 height: 42px;
 width: 109px;
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 19px;
+padding-left: 21px;
 `;
 
 const SpanDash = styled.span`

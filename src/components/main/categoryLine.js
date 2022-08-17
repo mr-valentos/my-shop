@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import DropDown from "../DropDown"
 
@@ -10,10 +11,11 @@ const options = [
   ]
 
 export default function CategoryLine() {
+    const allCategories = useSelector(state => state.categories.category)
+    const CategoriesWithoutAll = allCategories.filter(e => e.value !== 'all categories')
     return(
         <AsaidLine>
-            {options.map((e, i) => <DropDown key={e.value} option={options} defValue={e}/>)}
-            
+            {CategoriesWithoutAll.map((e, i) => <DropDown key={e.value} option={e.products} defValue={e}/>)}
         </AsaidLine>
     )
 }
@@ -24,11 +26,16 @@ export default function CategoryLine() {
 const AsaidLine = styled.aside`
 display: flex;
 align-items: center;
-padding: 16px 45px;
 gap: 39px;
-padding: 0px 80px;
+padding: 6px 114px;
 background: #F9F9F9;
 width: 100%;
-height: 55px;
-
+@media (max-width: 1130px) {
+    padding: 6px 29px;
+}
+@media (max-width: 768px) {
+>*{
+    display:none;
+}
+}
 `;

@@ -11,7 +11,7 @@ function App() {
     <DivApp className="App">
       <Header/>
       <Main/>
-
+      <Footer/>
     </DivApp>
 
   );
@@ -22,5 +22,5 @@ export default App;
 
 
 const DivApp = styled.div`
-    margin: 0px 0px;
+/* max-width: 93%; */
 `;

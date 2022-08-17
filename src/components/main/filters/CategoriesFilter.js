@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import FilterForm from "./FilterForm";
 
@@ -21,9 +22,32 @@ export default function CategoriesFilter(){
 
 
 function Categories(){
+    const allCategories = useSelector(state => state.categories.category)
+    const allProducts = useSelector(state => state.products.product)
+
+    const counter = value => {
+        let counter = 0;
+
+        if(value === 'all categories'){
+            return allProducts.length
+        }
+
+        for(let e of allProducts){
+            if(e.category === value){
+                counter += 1;
+            }
+        }
+        return counter
+    }
+
     return(
         <>
-        {options.map(e => <LiForCategories key={e.value}><h1>{e.label}</h1><SpanCounter>6</SpanCounter></LiForCategories>)}
+        {allCategories.map(e => (
+            <LiForCategories key={e.value}>
+                <h1>{e.label}</h1>
+                <SpanCounter>{counter(e.value)}</SpanCounter>
+            </LiForCategories>
+        ))}
         </>
         
     )
