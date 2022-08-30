@@ -6,10 +6,29 @@ import StarsImg from "../../img/starsProdactTemp.svg"
 
 export default function ProductList(){
     const allProduct = useSelector(state => state.products.product)
-    console.log(allProduct)
+    const filter = useSelector(state => state.filters.filter)
+
+    let filteredProduct = []
+
+    if(filter.category === 'all categories'){
+        filteredProduct = allProduct.filter(product => {
+            return product.name.toLowerCase().includes(filter.productName.toLowerCase()) 
+        })
+    } else {
+        filteredProduct = allProduct.filter(product => product.name.toLowerCase().includes(filter.productName.toLowerCase()) && product.category === filter.category)
+    }
+
+    if (filter.subcategory){
+        filteredProduct = filteredProduct.filter(product => product.subcategory === filter.subcategory)
+        console.log(filter.subcategory)
+    }
+    
+    filteredProduct = filteredProduct.filter(product => product.price >= filter.price[0] && product.price <= filter.price[1])
+
+    console.log(filter)
     return (
         <ProductSection className="product-list">
-            {allProduct.map(product => (
+            {filteredProduct.map(product => (
                 <Product key={product.id}
                 name={product.name}
                 price={product.price}

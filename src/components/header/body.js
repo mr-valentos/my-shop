@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addFilter } from "../../store/sliceFilter";
 import Select from 'react-select'
 import styled from "styled-components";
 import userImg from "../../img/person.svg"
@@ -7,20 +8,33 @@ import cartImg from "../../img/bag.svg"
 // import downImg from "../../img/down.svg"
 import searchImg from "../../img/search.svg"
 
-const options = [
-  { value: 'all', label: 'All categories' },
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
+// const options = [
+//   { value: 'all', label: 'All categories' },
+//   { value: 'chocolate', label: 'Chocolate' },
+//   { value: 'strawberry', label: 'Strawberry' },
+//   { value: 'vanilla', label: 'Vanilla' }
+// ]
 
 export default function HeadBody() {
-  const [currentCategory, setCurrentCategory] = useState('all')
+  const dispatch = useDispatch();
+
+  const [currentCategory, setCurrentCategory] = useState('all categories')
+  const [searchValue, setSearchValue] = useState('')
+
   const allCategories = useSelector(state => state.categories.category)
 
-  const getValue = () => options.find(ctg => ctg.value === currentCategory)
+  const getValue = () => allCategories.find(ctg => ctg.value === currentCategory)
 
   const onChange = (newValue) => setCurrentCategory(newValue.value)
+  const changeSearchValue = (e) => setSearchValue(e.target.value)
+  const setSearchFilter = () => dispatch(addFilter({currentCategory, searchValue}))
+  const setFilterByPressEntr = (e) => {
+    if(e.key === 'Enter'){
+      setSearchFilter()
+    }
+  }
+    
+  
 
   // let valueDef = { value: 'all', label: 'All categories' }
     return(
@@ -31,8 +45,8 @@ export default function HeadBody() {
           <DivSearch className='search'>
             <Select classNamePrefix='custom-select' options={allCategories} defaultValue={getValue} onChange={onChange}/>
             {/* <BtnCategory type='button'>All categories</BtnCategory> */}
-            <DivForInput><InputSearch type='text' placeholder='search'></InputSearch></DivForInput>
-            <BtnSearch type='button'></BtnSearch>
+            <DivForInput><InputSearch type='text' placeholder='search' onChange={changeSearchValue} onKeyDown={setFilterByPressEntr}></InputSearch></DivForInput>
+            <BtnSearch type='button' onClick={setSearchFilter}></BtnSearch>
           </DivSearch>
           <DivUserCart className='user_cart'>
             <DivUser img={userImg} className='user'>

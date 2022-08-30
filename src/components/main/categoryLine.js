@@ -1,21 +1,26 @@
-import React from "react";
+import React, {useState}  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import DropDown from "../DropDown"
+import { addSubcategory } from "../../store/sliceFilter";
 
-const options = [
-    { value: 'all', label: 'All categories' },
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
 
 export default function CategoryLine() {
+    const dispatch = useDispatch();
+    const [currentSubcategory, setCurrentSubcategory] = useState('')
+
     const allCategories = useSelector(state => state.categories.category)
     const CategoriesWithoutAll = allCategories.filter(e => e.value !== 'all categories')
+
+    const onChange = (newValue) => {
+        let subcategory = newValue.value
+        // setCurrentSubcategory(newValue.value)
+        dispatch(addSubcategory({subcategory}))
+    }
+
     return(
         <AsaidLine>
-            {CategoriesWithoutAll.map((e, i) => <DropDown key={e.value} option={e.products} defValue={e}/>)}
+            {CategoriesWithoutAll.map((e, i) => <DropDown key={e.value} option={e.products} defValue={e} onChange={onChange}/>)}
         </AsaidLine>
     )
 }

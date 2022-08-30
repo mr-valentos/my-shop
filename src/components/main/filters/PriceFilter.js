@@ -1,28 +1,60 @@
-import React from "react";
+import React, {useState} from "react";
+import { useDispatch} from "react-redux";
 import styled from "styled-components";
 import ReactSlider from "react-slider"
+import { addPriceFilter } from "../../../store/sliceFilter";
 
 
 
 export default function PriceFilter(){
+    const dispatch = useDispatch();
+    const [minPrice, setMinPrice] = useState(0)
+    const [maxPrice, setMaxPrice] = useState(99)
+
+    const newPriceRange = (newValues) => {
+        setMinPrice(newValues[0])
+        setMaxPrice(newValues[1])
+        console.log(newValues)
+    }
+    const setMin = (e) => {
+        let value = e.target.value 
+        if(!isNaN(value) && +value <= 99){
+            setMinPrice(+value)
+        }
+    }
+    const setMax = (e) => {
+        let value = e.target.value 
+        if(!isNaN(value) && +value <= 99){
+            setMaxPrice(+value)
+        }
+    }
+    const setPriceFilter = () => dispatch(addPriceFilter({minPrice, maxPrice}))
+    const resPriceFilter = () => {
+        let [minPrice, maxPrice] = [0 , 99]
+        setMinPrice(minPrice)
+        setMaxPrice(maxPrice)
+        dispatch(addPriceFilter({minPrice, maxPrice}))  
+    }
+    
+
     return (
             <div className="product-filter__price">
                 <PriceTitle>Price</PriceTitle>
-                <StyledSlider defaultValue={[0, 100]} renderTrack={Track} renderThumb={Thumb} />
+                <StyledSlider value={[minPrice, maxPrice]} max={99} renderTrack={Track} renderThumb={Thumb} onChange={newPriceRange}/>
                 <DivForInputs className="price-inputs">
                     <label >
                         <MinMaxTitle>Min</MinMaxTitle>
-                        <InputPrice type='number'></InputPrice>
+                        <InputPrice  value={minPrice} onChange={setMin}></InputPrice>
                     </label>
                     <SpanDash>-</SpanDash>
                     <label>
                         <MinMaxTitle>Max</MinMaxTitle>
-                        <InputPrice type='number'></InputPrice>
+                        <InputPrice value={maxPrice} onChange={setMax}></InputPrice>
                     </label>
                 </DivForInputs>
                 <DivApplyReset>
-                        <BtnApply>Apply</BtnApply>
-                        <BtnReset>Reset</BtnReset>
+                        <BtnApply onClick={setPriceFilter}>Apply</BtnApply>
+                        <BtnReset onClick={resPriceFilter}>Reset</BtnReset>
                     </DivApplyReset>
                 
                 
