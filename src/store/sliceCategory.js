@@ -23,7 +23,8 @@ const CategorySlice = createSlice({
                 {value: 'cucumbers', label: 'Cucumbers',},
                 {value: 'tomatoes', label: 'Tomatoes',},
             ]}
-        ]
+        ],
+        brands : ['ABC', 'Biofarm']
     },
     reducers: {
       // Header

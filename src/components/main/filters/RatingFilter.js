@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useState, useEffect, useRef} from "react";
+import { useDispatch} from "react-redux";
+import { addRatingFilter } from "../../../store/sliceFilter";
 import styled from "styled-components";
 import Checkbox from "../../Checkbox";
 import FilterForm from "./FilterForm";
@@ -17,19 +19,53 @@ export default function RatingFilter(){
 }
 
 function Rating(){
-    const [checked, setChecked] = React.useState(false);
+    const dispatch = useDispatch();
+    const [oneStar, setOneStar] = useState(false);
+    const [twoStars, setTwoStars] = useState(false);
+    const [threeStars, setThreeStars] = useState(false);
+    const [fourStars, setFourStars] = useState(false);
+    const [fiveStars, setFiveStars] = useState(false);
 
-    const handleChange = () => {
-        setChecked(!checked);
+    const checkFiveStars = () => {
+        setFiveStars(!fiveStars);
     };
+    const checkFourStars = () => {
+        setFourStars(!fourStars);
+    };
+    const checkThreeStars = () => {
+        setThreeStars(!threeStars);
+    };
+    const checkTwoStars = () => {
+        setTwoStars(!twoStars);
+    };
+    const checkOneStar = () => {
+        setOneStar(!oneStar);
+    };
+
+    const firstUpdate = useRef(true);
+    useEffect(() => {
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return;
+        } else {
+        let rating = []
+        if(oneStar){rating.push(1)}
+        if(twoStars){rating.push(2)}
+        if(threeStars){rating.push(3)}
+        if(fourStars){rating.push(4)}
+        if(fiveStars){rating.push(5)}
+        console.log(rating)
+        dispatch(addRatingFilter({rating}))
+        }
+    });
 
     return (
         <>
             <li>
                 <FlexLabel>
                     <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
+                    checked={fiveStars}
+                    onChange={checkFiveStars}
                     />
                     <StyledSpanStars >
                         <Star img={starImg}/><Star img={starImg}/><Star img={starImg}/><Star img={starImg}/><Star img={starImg}/>
@@ -39,8 +75,8 @@ function Rating(){
             <li>
                 <FlexLabel>
                     <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
+                    checked={fourStars}
+                    onChange={checkFourStars}
                     />
                     <StyledSpanStars >
                         <Star img={starImg}/><Star img={starImg}/><Star img={starImg}/><Star img={starImg}/><Star img={EmptyStarImg}/>
@@ -50,8 +86,8 @@ function Rating(){
             <li>
                 <FlexLabel>
                     <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
+                    checked={threeStars}
+                    onChange={checkThreeStars}
                     />
                     <StyledSpanStars >
                         <Star img={starImg}/><Star img={starImg}/><Star img={starImg}/><Star img={EmptyStarImg}/>
@@ -62,8 +98,8 @@ function Rating(){
             <li>
                 <FlexLabel>
                     <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
+                    checked={twoStars}
+                    onChange={checkTwoStars}
                     />
                     <StyledSpanStars >
                         <Star img={starImg}/><Star img={starImg}/><Star img={EmptyStarImg}/><Star img={EmptyStarImg}/>
@@ -74,8 +110,8 @@ function Rating(){
             <li>
                 <FlexLabel>
                     <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
+                    checked={oneStar}
+                    onChange={checkOneStar}
                     />
                     <StyledSpanStars >
                         <Star img={starImg}/><Star img={EmptyStarImg}/><Star img={EmptyStarImg}/><Star img={EmptyStarImg}/>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import StarsImg from "../../img/starsProdactTemp.svg"
@@ -20,12 +20,20 @@ export default function ProductList(){
 
     if (filter.subcategory){
         filteredProduct = filteredProduct.filter(product => product.subcategory === filter.subcategory)
-        console.log(filter.subcategory)
+    }
+
+    if (filter.rating.length > 0){
+        filteredProduct = filteredProduct.filter(product => filter.rating.includes(product.rating))
+    }
+
+    if (filter.brands.length > 0){
+        filteredProduct = filteredProduct.filter(product => filter.brands.includes(product.brand))
     }
     
     filteredProduct = filteredProduct.filter(product => product.price >= filter.price[0] && product.price <= filter.price[1])
 
     console.log(filter)
+
     return (
         <ProductSection className="product-list">
             {filteredProduct.map(product => (
@@ -69,6 +77,7 @@ function Product(props){
         default:
             ratingInStars = ''
       }
+      
     return(
         <ItemDiv className="product-list__item">
             <ImgDiv><DiscountBadge>-36 %</DiscountBadge></ImgDiv>
