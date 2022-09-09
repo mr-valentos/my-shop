@@ -1,8 +1,11 @@
 import './App.css';
+import { Routes, Route, Link } from "react-router-dom";
+
 import styled from "styled-components";
 import Header from './components/header';
 import Main from './components/main'
 import Footer from './components/footer'
+import Product from './components/main/Product';
 
 
 function App() {
@@ -10,7 +13,11 @@ function App() {
   return (
     <DivApp className="App">
       <Header/>
-      <Main/>
+      <Routes>
+        <Route path='/' element={<Main/>} />
+        <Route path='/product=:id' element={<Product/>} />
+      </Routes>
+      
       <Footer/>
     </DivApp>
 

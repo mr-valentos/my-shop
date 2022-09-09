@@ -1,7 +1,10 @@
 import React, {useEffect} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Modal } from "../Modal";
 import StarsImg from "../../img/starsProdactTemp.svg"
+import productsImg from "../../img/products.jpeg"
 
 
 export default function ProductList(){
@@ -42,6 +45,7 @@ export default function ProductList(){
                 price={product.price}
                 description={product.description}
                 rating={product.rating}
+                id={product.id}
                 />
             ))}
             
@@ -56,6 +60,7 @@ function Product(props){
     const {price} = props
     const {description} = props
     const {rating} = props
+    const {id} = props
     let ratingInStars = ''
 
     switch (rating) {
@@ -80,9 +85,9 @@ function Product(props){
       
     return(
         <ItemDiv className="product-list__item">
-            <ImgDiv><DiscountBadge>-36 %</DiscountBadge></ImgDiv>
+            <ImgDiv image={productsImg}><DiscountBadge>-36 %</DiscountBadge></ImgDiv>
             <div>
-                <ProductTitle>{name}</ProductTitle>
+                <ProductTitle><StyledLink to={`/product=${id}`} >{name}</StyledLink></ProductTitle>
                 <ProductDescription>{description}</ProductDescription>
                 <ProductRating img={StarsImg}></ProductRating>
             </div>
@@ -93,10 +98,17 @@ function Product(props){
             </PriceBlock>
                 <BtnBuy>Buy now</BtnBuy>
             </PriceAndBtn>
-            
         </ItemDiv>
     )
 }
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
 
 
 //========================Style for product list=========================
@@ -134,7 +146,7 @@ gap: 16px;
 const ImgDiv = styled.div`
 width: 236px;
 height: 180px;
-background: #F9F9F9;
+background: url(${props=>props.image}) 0 0/cover no-repeat;
 border-radius: 12px;
 @media (max-width: 768px) {
     /* width: 100%;
