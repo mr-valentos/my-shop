@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Modal } from "../Modal";
 import StarsImg from "../../img/starsProdactTemp.svg"
 import productsImg from "../../img/products.jpeg"
 
@@ -210,7 +209,8 @@ font-weight: 600;
 }
 `;
 
-const BtnBuy = styled.button`
+export const BtnBuy = styled.button`
+display: flex;
 align-items: center;
 padding: 12px 16px;
 height: 48px;
