@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import styled from "styled-components";
 import Header from './components/header';
@@ -15,9 +15,8 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Main/>} />
-        <Route path='/product=:id' element={<Product/>} />
-      </Routes>
-      
+        <Route path='/product=:id/*' element={<Product/>} />
+      </Routes>   
       <Footer/>
     </DivApp>
 

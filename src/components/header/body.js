@@ -40,7 +40,7 @@ export default function HeadBody() {
     return(
         <DivBody className='header-body'>
           <div className='logo'>
-            <H1>Freshfood</H1>
+            <a href="/"><H1>Freshfood</H1></a>
           </div>
           <DivSearch className='search'>
             <Select classNamePrefix='custom-select' options={allCategories} defaultValue={getValue} onChange={onChange}/>
@@ -78,6 +78,7 @@ const H1 = styled.h1`
 font-family: 'Poppins', sans-serif;
 font-size: 28px;
 font-weight: 700;
+color: #151515;
 `;
 
 const DivSearch = styled.div`
