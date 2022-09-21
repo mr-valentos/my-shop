@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route, Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import ProductDescription from "./ProductDescription";
+import ProductQuestions from "./ProductQuestions";
+import ProductReviews from "./ProductReviews";
 import productsImg from "../../img/products.jpeg";
 import { BtnBuy } from "./ProductList";
 import plusImg from "../../img/plus.svg";
@@ -55,9 +58,7 @@ export default function Product() {
           </div>
           <div>
             <h2>
-              Carrots from Tomissy Farm are one of the best on the market.
-              Tomisso and his family are giving a full love to his Bio products.
-              Tomisso’s carrots are growing on the fields naturally.
+              Carrots from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s carrots are growing on the fields naturally.
             </h2>
           </div>
           <TablesDiv>
@@ -147,9 +148,9 @@ function AboutProduct() {
         </DivForLink>
       </DivWithLinks>
       <Routes>
-        <Route path="/" element={<h1>hi</h1>} />
-        <Route path="/reviews" element={<h1>reviews</h1>} />
-        <Route path="/questions" element={<h1>question</h1>} />
+        <Route path="/" element={<ProductDescription/>} />
+        <Route path="/reviews" element={<ProductReviews/>} />
+        <Route path="/questions" element={<ProductQuestions/>} />
       </Routes>
     </MainDiv>
   );

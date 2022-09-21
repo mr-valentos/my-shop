@@ -7,19 +7,21 @@ import userImg from "../../img/person.svg"
 import cartImg from "../../img/bag.svg"
 // import downImg from "../../img/down.svg"
 import searchImg from "../../img/search.svg"
+import { Modal } from "../Modal";
+import Cart from "./Cart";
 
-// const options = [
-//   { value: 'all', label: 'All categories' },
-//   { value: 'chocolate', label: 'Chocolate' },
-//   { value: 'strawberry', label: 'Strawberry' },
-//   { value: 'vanilla', label: 'Vanilla' }
-// ]
+
 
 export default function HeadBody() {
   const dispatch = useDispatch();
 
   const [currentCategory, setCurrentCategory] = useState('all categories')
   const [searchValue, setSearchValue] = useState('')
+  const [modalActive, setModalActive] = useState(false)
+
+  const setModalActiveFunction = () => {
+    setModalActive(false)
+  }
 
   const allCategories = useSelector(state => state.categories.category)
 
@@ -52,8 +54,11 @@ export default function HeadBody() {
             <DivUser img={userImg} className='user'>
               <SpanCounter>4</SpanCounter>
             </DivUser>
-            <DivUser img={cartImg} className='cart'>
+            <DivUser img={cartImg} className='cart' onClick={() => setModalActive(true)}>
               <SpanCounter>4</SpanCounter>
+              <Modal active={modalActive} setActive={setModalActiveFunction} >
+                <Cart/>
+              </Modal>
             </DivUser>
           </DivUserCart>
         </DivBody>

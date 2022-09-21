@@ -2,7 +2,8 @@ import React, {useEffect} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import StarsImg from "../../img/starsProdactTemp.svg"
+import starImg from "../../img/blackStar.svg"
+import emptyStarImg from "../../img/emptyStar.svg"
 import productsImg from "../../img/products.jpeg"
 
 
@@ -45,6 +46,7 @@ export default function ProductList(){
                 description={product.description}
                 rating={product.rating}
                 id={product.id}
+                discount={product.discount}
                 />
             ))}
             
@@ -55,45 +57,31 @@ export default function ProductList(){
 
 
 function Product(props){
-    const {name} = props
-    const {price} = props
-    const {description} = props
-    const {rating} = props
-    const {id} = props
-    let ratingInStars = ''
-
-    switch (rating) {
-        case 1:
-            ratingInStars = ''
-          break;
-        case 2:
-            ratingInStars = ''
-          break;
-        case 3:
-            ratingInStars = ''
-          break;
-        case 4:
-            ratingInStars = ''
-          break;
-        case 5:
-            ratingInStars = ''
-          break;
-        default:
-            ratingInStars = ''
-      }
+    const {name, price, description, rating, id, discount} = props
+    
       
     return(
         <ItemDiv className="product-list__item">
-            <ImgDiv image={productsImg}><DiscountBadge>-36 %</DiscountBadge></ImgDiv>
+            <ImgDiv image={productsImg}>{discount ? <DiscountBadge>-{discount} %</DiscountBadge> : <></>}</ImgDiv>
             <div>
                 <ProductTitle><StyledLink to={`/product=${id}`} >{name}</StyledLink></ProductTitle>
                 <ProductDescription>{description}</ProductDescription>
-                <ProductRating img={StarsImg}></ProductRating>
+                <ProductRating >
+                {[...Array(5)].map((star, i) => {
+                const ratingValue = i + 1;
+                return (
+                    <Star key={ratingValue}
+                      img={
+                        ratingValue <= rating ? starImg : emptyStarImg
+                      }
+                    />
+                );
+              })}
+                </ProductRating>
             </div>
             <PriceAndBtn>
             <PriceBlock>
-                <h1>{price} USD</h1>
-                <h2>{48.56}</h2>     
+                {discount ? <><h1>{(price - (price/100 * discount)).toFixed(2) } USD</h1>  <h2>{price}</h2></> : <h1>{price} USD</h1>}   
             </PriceBlock>
                 <BtnBuy>Buy now</BtnBuy>
             </PriceAndBtn>
@@ -184,10 +172,14 @@ margin-top: 4px;
 `;
 
 const ProductRating = styled.div`
+display: flex;
+`;
+
+const Star = styled.div`
 background: url(${props=>props.img}) 0 0/100% 100% no-repeat;
-width:88px;
+width:16px;
 height:16px;
-margin-top: 12px;
+margin: 13px 3px 0px 0px;
 `;
 
 const PriceAndBtn = styled.div`
@@ -196,6 +188,9 @@ justify-content: space-between;
 `;
 
 const PriceBlock = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
 font-weight: 600;
 >h1{  
     font-size: 18px;
