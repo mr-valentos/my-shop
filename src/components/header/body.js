@@ -7,7 +7,7 @@ import userImg from "../../img/person.svg"
 import cartImg from "../../img/bag.svg"
 // import downImg from "../../img/down.svg"
 import searchImg from "../../img/search.svg"
-import { Modal } from "../Modal";
+import  { Modal }  from "../Modal";
 import Cart from "./Cart";
 
 

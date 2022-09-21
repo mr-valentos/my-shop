@@ -5,7 +5,13 @@ import styled from "styled-components";
 export const Modal = ({active, setActive, children}) => {
 
     return (
-        <ModalDiv active={active} className="modal" onClick={setActive}>
+        <ModalDiv 
+            active={active} 
+            className="modal" 
+            onClick={(e) => {
+            setActive()
+            e.stopPropagation()
+            }}>
             <ContentDiv active={active} className="modal__content" >
                 {children}
             </ContentDiv>
