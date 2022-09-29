@@ -58,7 +58,9 @@ export default function Product() {
           </div>
           <div>
             <h2>
-              Carrots from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s carrots are growing on the fields naturally.
+              Carrots from Tomissy Farm are one of the best on the market.
+              Tomisso and his family are giving a full love to his Bio products.
+              Tomisso’s carrots are growing on the fields naturally.
             </h2>
           </div>
           <TablesDiv>
@@ -125,7 +127,7 @@ export default function Product() {
 }
 
 function AboutProduct() {
-    const [check, setCheck] = useState(1)
+  const [check, setCheck] = useState(1);
 
   return (
     <MainDiv className="product__description">
@@ -148,9 +150,9 @@ function AboutProduct() {
         </DivForLink>
       </DivWithLinks>
       <Routes>
-        <Route path="/" element={<ProductDescription/>} />
-        <Route path="/reviews" element={<ProductReviews/>} />
-        <Route path="/questions" element={<ProductQuestions/>} />
+        <Route path="/" element={<ProductDescription />} />
+        <Route path="/reviews" element={<ProductReviews />} />
+        <Route path="/questions" element={<ProductQuestions />} />
       </Routes>
     </MainDiv>
   );
@@ -296,33 +298,32 @@ const FlexDiv = styled.div`
 `;
 /* #endregion */
 
-
+/* #region  About */
 const MainDiv = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const DivWithLinks = styled.div`
-display: flex;
-width: 70%;
-margin-bottom: 47px;
+  display: flex;
+  width: 70%;
+  margin-bottom: 47px;
 
-*>h1{
-    font-family: 'Poppins';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 27px;
-color: #151515;
-padding: 0px 0px 16px 0px;
-
-}
+  * > h1 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    color: #151515;
+    padding: 0px 0px 16px 0px;
+  }
 `;
 
 const DivForLink = styled.div`
-flex-grow: 1;
-text-align: center;
-border-bottom: 1px solid ${props => props.checked ? '#6A983C' : '#F5F5F5'};
-`
+  flex-grow: 1;
+  text-align: center;
+  border-bottom: 1px solid ${(props) => (props.checked ? "#6A983C" : "#F5F5F5")};
+`;
+/* #endregion */

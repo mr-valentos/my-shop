@@ -12,7 +12,7 @@ export const Modal = ({active, setActive, children}) => {
             setActive()
             e.stopPropagation()
             }}>
-            <ContentDiv active={active} className="modal__content" >
+            <ContentDiv active={active} className="modal__content" onClick={e => e.stopPropagation()}>
                 {children}
             </ContentDiv>
         </ModalDiv>
@@ -34,6 +34,5 @@ transform: scale(${props => props.active ? 1 : 0});
 `
 
 const ContentDiv = styled.div`
-padding: 16px;
 background-color: white;
 `
